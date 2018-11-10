@@ -1,0 +1,271 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Nov 10 18:45:00 2018
+
+@author: Shinhyunjin
+"""
+
+## Machine Learning Algorithm Trading ##
+import pandas as pd
+import datetime as dt
+import matplotlib as plt
+import os
+import numpy as np
+from pandas.compat import range, lrange, lmap, map, zip
+import statsmodels.tsa.stattools as ts
+import os,sys,datetime
+import matplotlib.dates as mdates
+import pprint
+import statsmodels.tsa.stattools as ts
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+#from sklearn. import LDA
+from sklearn.metrics import confusion_matrix
+#from sklearn.qda import QDA
+from sklearn.svm import LinearSVC, SVC
+parentPath = os.path.abspath("..")
+if parentPath not in sys.path:
+    sys.path.insert(0, parentPath)
+#from common import *
+
+pre1 = os.path.dirname(os.path.realpath('C:/Users/Shinhyunjin/Dropbox/hmc_history.xlsx'))
+fname1 = 'hmc_history.xlsx'
+path1 = os.path.join(pre1, fname1)
+df1 = pd.read_excel(path1)
+hmc_data = pd.DataFrame(df1)
+hmc_data = hmc_data.fillna(method ='ffill')
+pre2 = os.path.dirname(os.path.realpath('C:/Users/Shinhyunjin/Dropbox/nc_history.xlsx'))
+fname2 = 'nc_history.xlsx'
+path2 = os.path.join(pre2, fname2)
+df2 = pd.read_excel(path2)
+nc_data = pd.DataFrame(df2)
+
+
+    
+
+#data.volume.replace("K", "")
+#data.volume.replace("M", "")
+
+#for i in range(len(data.volume)):
+
+#    data.volume[i] = data.volume[i] * 1000
+
+#1. Time series Analysis #
+
+# 기초 통게
+
+print(data1.describe())
+
+# 사분위수
+
+print(data1.quantile([0.25,0.5,0.75]))
+
+#히스토그램
+(n, bins, pathced) = plt.pyplot.hist(hmc_data['open'])
+plt.axvline(hmc_data['open'].mean(), color='red')
+plt.show()
+for index in range(len(n)):
+    print( "Bin : %0.f, Frequency = %0.f" % (bins[index],n[index]))
+    
+#산점도
+
+pd.plotting.scatter_matrix(hmc_data[['open', 'high','low','close']], alpha=0.2, figsize=(6,6), diagonal = 'kde')
+plt.show()
+
+# box plot
+
+hmc_data[['open', 'high', 'low', 'close']].plot(kind='box')
+plt.show()
+
+# Covarinace, correlation
+
+print (data1['close'].cov(nc.data['close']))
+print (data1['close'].corr(nc.data['close']))
+
+# Autocorrelation
+
+fig, axs = plt.pyplot.subplots(2,1)
+hmc_data['close'].plot(ax = axs[0])
+pd.plotting.autocorrelation_plot(hmc_data['close'], ax = axs[1])
+plt.show()
+
+# Correlogram 
+
+def get_autocorrelation_dataframe(series):
+    def r(h):
+        return ((data[:n - h] - mean) * (data[h:] - mean)).sum() / float(n) / c0
+
+    n = len(series)
+    data = np.asarray(series)
+
+    mean = np.mean(data)
+    c0 = np.sum((data - mean) ** 2) / float(n)
+
+    x = np.arange(n) + 1
+    y = lmap(r, x)
+
+    df = pd.DataFrame(y, index=x)
+
+    return df
+
+df_hmc_corr = get_autocorrelation_dataframe(hmc_data['close'])
+
+fig, axs = plt.pyplot.subplots(2,1)
+axs[1].xaxis.set_visible(False)
+data1['close'].plot(ax = axs[0])
+df_hmc_corr[0].plot(kind = 'bar', ax = axs[1])
+plt.show()
+
+
+### 2. Algorithm Trading ###
+
+### 2-1 평균회귀모델 ###
+
+# ADF테스트
+adf_result = ts.adfuller(hmc_data['close'])
+print(adf_result)
+#순서대로 검정통계량, pvalue, ?, 데이터수, 가설검정 기각값
+#-> 검정통계량과 각 기각값 비교해서 검정통계량이 작아야한다.
+# 기각하지 못하면 평균회귀모델이 안된다.
+
+# 허스트 지수
+#0이면 평균회귀o
+#1이면 평균회귀x
+def get_hurst_exponent(df):
+    lags = range(2,100)
+    ts = np.log(df)
+    tau = [np.sqrt(np.std(np.subtract(ts[lag:], ts[:-lag]))) for lag in lags]
+    poly = np.polyfit(np.log(lags), np.log(tau),1)
+    result = poly[0] * 2.0
+    return result
+
+df1 = hmc_data
+df2 = nc_data
+husrt_data1 = get_hurst_exponent(data1['close'])
+husrt_data2 = get_hurst_exponent(data2['close'])
+print("Hurst Exponent: HMC =%s, NC =%s" % (husrt_data1, husrt_data2))
+
+# Half life
+#시간단위 일치 조심
+# 숫자가 크면 장기간, 작으면 주기가 짧다
+# 주기가 짧으면 평균회귀가 일어날 가능성이 높다
+
+def get_half_life(df):
+    price = pd.Series(df)
+    lagged_price = price.shift(1).fillna(method = "bfill")
+    delta = price - lagged_price
+    beta = np.polyfit(lagged_price, delta, 1)[0]
+    half_life = (-1*np.log(2)/beta)
+    return half_life
+
+half_life_hmc = get_half_life(hmc_data['close'])
+half_life_nc = get_half_life(nc_data['close'])
+print("Half_life: HMC =%s, NC =%s" % (half_life_hmc, half_life_nc))
+
+### 2-2 Machine learning Modeling ###
+
+#Method: Logistic Regrssion, SVM(Support Vector Machine), Random Forest
+
+# Data Set
+
+def make_dataset(df, time_lags=5):
+    df_lag = df
+    df_lag["close"] = df["close"]
+    df_lag["volume"] = df["volume"]
+
+    df_lag["Close_Lag%s" % str(time_lags)] = df["close"].shift(time_lags)
+    df_lag["Close_Lag%s_Change" %str(time_lags)] = df_lag["Close_Lag%s" %str(time_lags)].pct_change()*100.0
+
+    df_lag["Volume_Lag%s" %str(time_lags)] = df["volume"].shift(time_lags)
+    df_lag["Volume_Lag%s_Change" %str(time_lags)] = df_lag["Volume_Lag%s" %str(time_lags)].pct_change()*100.0
+
+    df_lag["Close_Direction"] = np.sign(df_lag["Close_Lag%s_Change" %str(time_lags)])
+    df_lag["Volume_Direction"] = np.sign(df_lag["Volume_Lag%s_Change" %str(time_lags)])
+
+    return df_lag.dropna(how='any')
+
+
+def split_dataset(df,input_column_array,output_column,spllit_ratio):
+    split_date = get_date_by_percent(df.index[0],df.index[df.shape[0]-1],spllit_ratio)
+
+    input_data = df[input_column_array]
+    output_data = df[output_column]
+
+    # Create training and test sets
+    X_train = input_data[input_data.index < split_date]
+    X_test = input_data[input_data.index >= split_date]
+    Y_train = output_data[output_data.index < split_date]
+    Y_test = output_data[output_data.index >= split_date]
+
+    return X_train,X_test,Y_train,Y_test
+
+
+def get_date_by_percent(start_date,end_date,percent):
+    days = end_date - start_date
+    target_days = np.trunc(days * percent)
+    target_date = start_date + target_days
+    #print days, target_days,target_date
+    return target_date
+
+
+def do_logistic_regression(X_train,Y_train):
+    classifier = LogisticRegression()
+    classifier.fit(X_train, Y_train)
+    return classifier
+
+
+def do_random_forest(X_train,Y_train):
+    classifier = RandomForestClassifier()
+    classifier.fit(X_train, Y_train)
+    return classifier
+
+
+def do_svm(X_train,Y_train):
+    classifier = SVC()
+    classifier.fit(X_train, Y_train)
+    return classifier
+
+
+def test_classifier(classifier,X_test,Y_test):
+    pred = classifier.predict(X_test)
+
+    hit_count = 0
+    total_count = len(Y_test)
+    for index in range(total_count):
+        if (pred[index]) == (Y_test[index]):
+            hit_count = hit_count + 1
+    
+    hit_ratio = hit_count/total_count
+    score = classifier.score(X_test, Y_test)
+    #print "hit_count=%s, total=%s, hit_ratio = %s" % (hit_count,total_count,hit_ratio)
+
+    return hit_ratio, score
+    # Output the hit-rate and the confusion matrix for each model
+    
+    #print("%s\n" % confusion_matrix(pred, y_test))
+
+## 안돌아감 ㅠ
+if __name__ == "__main__":
+    # Calculate and output the CADF test on the residuals
+
+    avg_hit_ratio = 0    
+    for time_lags in range(1,6):
+        print ("- Time Lags=%s" % (time_lags))
+
+        
+        df_company = hmc_data
+        df_dataset = make_dataset(df_company,time_lags)
+        X_train,X_test,Y_train,Y_test = split_dataset(df_dataset,["Close_Lag%s"%str(time_lags),"Volume_Lag%s"%str(time_lags)],"Close_Direction",0.75)
+            #print X_test
+
+        lr_classifier = do_logistic_regression(X_train,Y_train)
+        lr_hit_ratio, lr_score = test_classifier(lr_classifier,X_test,Y_test)
+
+        rf_classifier = do_random_forest(X_train,Y_train)
+        rf_hit_ratio, rf_score = test_classifier(rf_classifier,X_test,Y_test)
+
+        svm_classifier = do_svm(X_train,Y_train)
+        svm_hit_ratio, svm_score = test_classifier(rf_classifier,X_test,Y_test)
+
+        print ("%s : Hit Ratio - Logistic Regreesion=%0.2f, RandomForest=%0.2f, SVM=%0.2f" % ("hmc",lr_hit_ratio,rf_hit_ratio,svm_hit_ratio))
+
