@@ -1,0 +1,197 @@
+### Ch1. R 속으로 ###
+
+## 패키지 설치 ##
+#자동설치법 
+install.packages("ggplot2")
+install.packages("forecast")
+library(ggplot2)
+library(forecast)
+#수동설치법 
+install.packages("ggplot2", lib = "/data/Rpackages/")
+library(ggplot2, lib.loc = "/data/Rpackages/")
+
+## Data ##
+#class(변수)는 변수의 데이터 형태를 말해준다.
+# Character
+a <- "hello"
+print(class(a))
+# numeric
+b <- 2.5
+print(class(b))
+# integer
+c <- 6L
+print(class(c))
+#complex
+d <- 1 + 2i
+print(class(d))
+# Logic 
+e<- FALSE
+print(class(e))
+
+## Data 유형 ##
+#1. Vector
+
+a <- "Quantitative"
+b <- "Finance"
+c(a,b)
+
+v <- c(1,2,3)
+v
+
+#2. List
+
+list1 = list(c(4,5,6), "hello" ,24.5)
+print(list1)
+print(list1[2]) #두번째 요소 
+
+#list merge
+list1 <- list(5,6,7) #3행 
+list2 <- list("a","b","c") #3행 
+combined_list <- c(list1, list2)
+print(combined_list) #6행 
+
+#3.Matrix
+m <- matrix(c(1,2,3,4,5,6), nrow =2, ncol =3) #nrow행, ncol열 
+print(m)
+
+#4. array
+a <- array(c(4,5), dim = c(3,3,2)) #c(행,열,차원) 
+print(a)
+
+#5. Factor
+
+a <- c(2,3,4,2,3)
+fact <- factor(a) #서로 다른 값을 구분해 저장 
+print(fact) 
+print(nlevels(fact)) #서로 다른 값의 개수 
+
+#6. Data Frame
+
+data <- data.frame(
+  Name = c("A","B","c"), age = c(18,20,23), gender = c("F","M","M")
+)
+print(data)
+
+
+## 데이터 내보내고 갖고 오기 import and export ##
+
+print(getwd()) #디렉토리 경로 
+#setwd는 디렉토리를 설정해준다.
+
+#csv
+data <- read.csv("C:/Users/Shinhyunjin/Dropbox/data/gold.csv")
+data
+print(is.data.frame(data)) #dataframe을 확인
+
+write.csv(data,"result.csv") #csv 쓰기 
+output <- read.csv("result.csv")
+print(output)
+
+#xlsx
+install.packages('rJava')
+library(rJava)
+install.packages("xlsx", INSTALL_opts=c("--no-multiarch"))
+any(grepl("xlsx", installed.packages())) #설치확인 
+library(xlsx)
+xlsxdata <- read.xlsx("C:/Users/Shinhyunjin/Dropbox/data/hw1data.xlsx", sheetIndex=1)
+
+output <- write.xlsx(data, "result.xlsx")
+output <- read.csv("result.csv")
+print(output)
+
+#Web data
+
+URL <- "http://finance.google.co.uk/finance/historical?q=GOOGL
++&startdate=JAN+01%2c+2016
++&enddate=DEC+31%2c+2016
++&output=csv"
+google<- as.data.frame(read.csv(URL))
+head(google)
+
+#Database 
+install.packages("RMySQL")
+library(RMySQL)
+
+## 함수 ##
+#value까지 순차적으로 제곱을 반복적으로 도출하는 함수 
+findingSqrFunc <- function(value){
+  for(j in 1:value){
+    sqr <- j^2
+    print(sqr)
+  }
+}
+
+findingSqrFunc(4)
+
+#인수없이 5의 배수 도출하는 함수
+
+function_test <- function(){
+  for(i in 1:3){
+    print(i*5)
+  }
+}
+function_test()
+
+#인수가 있는 함수
+function_test2 <- function(a,b,c){
+  result<-a*b+c
+  print(result)
+}
+function_test2(1,2,3)
+
+### 반복문 ###
+
+#1. if
+x <-5
+if(x>0){
+  print("참")
+} else{
+  print("거짓")
+}
+
+#2. for 정의된 갯수만큼 실행 
+var <- c(3,6,8,9,11,16)
+counter <- 0
+for (val in var){
+  if(val%%2 !=0) counter=counter+1 #홀수를 세는 코드 -> 2의 배수가 아니다!
+}
+print(counter)
+
+#3. While 계속 반복함
+var <- c("hello")
+counter <- 4
+while(counter < 7){
+  print(var)
+  counter = counter+1
+}
+
+#4. apply
+
+sample = matrix(c(1:10), nrow =5, ncol = 2) #5행 2열 
+apply(sample, 1, sum) # 데이터, 행별(2이면 열별) , 합 의미
+
+#5. sapply
+sapply(1:5, function(x) x^3)
+
+#6. break
+
+vec <- c("hello")
+counter <- 5
+repeat {
+  print(vec)
+  counter <- counter +1
+  if(counter>8){
+    break
+  }
+}
+
+#7. next
+vec<- c(2,3,4,5,6)
+for (i in vec){
+  if(i==4){
+    next # 4에서 건너뛰는데 이때 4를 제외하고 건너뜀 (next)
+  }
+  print(i)
+} 
+  }
+}
