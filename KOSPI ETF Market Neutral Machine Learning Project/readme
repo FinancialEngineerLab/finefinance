@@ -5,4 +5,8 @@ author : Shin Hyunjin
 
 Data : TIGER 200 ETF, TIGER 200 Inverse ETF
 Source : Yahoo Finance
+Period : 2013-02-02 ~ 2019-02-02
+Objective : Visualization and Develement of tools for Market Neutral Strategy
 Methods : Logistic Regression, Support Vector Machine, Neural Network, Deep Neural Network, Long Short-Term Memory
+
+Submitted to DB corp.
