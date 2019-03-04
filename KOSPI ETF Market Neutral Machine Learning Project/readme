@@ -1,0 +1,8 @@
+
+KOSPI ETF Market Neutral Strategy with Machine learning project.
+
+author : Shin Hyunjin
+
+Data : TIGER 200 ETF, TIGER 200 Inverse ETF
+Source : Yahoo Finance
+Methods : Logistic Regression, Support Vector Machine, Neural Network, Deep Neural Network, Long Short-Term Memory
