@@ -24,6 +24,7 @@ Master of Finance, University of Illinois(Urbana-Champaign), IL, United States
 
 Works : 
 MPA Manager, KOICA
+
 Internship, National Assembly of Korea
 
 Skills : R, Python, MySQL, Eviews, Excel VBA, Excel
