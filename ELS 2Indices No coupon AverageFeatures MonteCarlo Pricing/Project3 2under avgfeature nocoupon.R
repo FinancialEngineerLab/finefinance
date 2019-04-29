@@ -3,7 +3,9 @@
 
 library(quantmod)
 
-### 2기초자산 + Average Feature + no coupon ###
+### 2underlying assets + Average Feature + no coupon ###
+## Product :  <Accelerated Return Securities Based on the Value of the Worst Performing of
+## the S&P 500® Index and the Russell 2000® Index due September 11, 2023>, Morgan Stanley
 
 ### data crawling ###
 getSymbols("^RUT", from = "2008-04-08", to = "2018-04-08")
