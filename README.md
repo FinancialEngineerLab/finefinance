@@ -14,7 +14,7 @@ CV)
 Hometown : Ulsan, South Korea
 
 Education : 
-Accounting and Taxation, B.B.A KyungHee University, Seoul, Korea
+Accounting and Taxation(Top Honored), B.B.A KyungHee University, Seoul, Korea
 
 Master of Financial Engineering, KAIST(Korea Advanced Institute Science and Technology), Seoul, Korea
 
@@ -23,12 +23,17 @@ Master of Financial Engineering, KAIST(Korea Advanced Institute Science and Tech
 Master of Finance, University of Illinois(Urbana-Champaign), IL, United States
 
 Works : 
+Derivatives Trading, SK Securities
 MPA Manager, KOICA
 
-Internship, National Assembly of Korea
+Associate Secretary, National Assembly of Korea
 
-Skills : R, Python, MySQL, Eviews, Excel VBA, Excel
+Skills : R, Python, MySQL, Eviews, Excel VBA, Excel, C++
 
-Honor : Top-Ranking Honored Scholarship, School of Management, KyungHee Universty
+Honor :
+2nd Rank, WorldQuant International Challenge 2019 (Korea Final)
+Top-Ranking Honored Scholarship, School of Management, KyungHee Universty
 
-Certificate : Investment Asset Manager(KOIFA)
+Certificate :
+Investment Asset Manager(KOIFA)
+Bloomburg Market Concept(Bloomburg LP)
