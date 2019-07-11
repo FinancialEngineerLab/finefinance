@@ -24,6 +24,7 @@ Master of Finance, University of Illinois(Urbana-Champaign), IL, United States
 
 Works : 
 Derivatives Trading, SK Securities
+
 MPA Manager, KOICA
 
 Associate Secretary, National Assembly of Korea
@@ -32,6 +33,7 @@ Skills : R, Python, MySQL, Eviews, Excel VBA, Excel, C++
 
 Honor :
 2nd Rank, WorldQuant International Challenge 2019 (Korea Final)
+
 Top-Ranking Honored Scholarship, School of Management, KyungHee Universty
 
 Certificate :
