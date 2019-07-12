@@ -24,7 +24,7 @@ Skills : R, Python, MySQL, Eviews, Excel VBA, Excel, C++
 #Honor :
 2nd Rank, WorldQuant International Challenge 2019 (Korea Final)
 
-Published, <Market Neutral Strategy for ETF Trading with Deep Learning>, DongBu Finance
+Published, "Market Neutral Strategy for ETF Trading with Deep Learning", DongBu Finance
 
 #Certificate :
 Investment Asset Manager(KOIFA)
