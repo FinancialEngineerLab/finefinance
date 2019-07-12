@@ -38,4 +38,5 @@ Top-Ranking Honored Scholarship, School of Management, KyungHee Universty
 
 Certificate :
 Investment Asset Manager(KOIFA)
+
 Bloomburg Market Concept(Bloomburg LP)
