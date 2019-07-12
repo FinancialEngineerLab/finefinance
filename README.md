@@ -16,7 +16,7 @@ Hometown : Ulsan, South Korea
 Education : 
 Accounting and Taxation(Top Honored), B.B.A KyungHee University, Seoul, Korea
 
-Master of Financial Engineering, KAIST(Korea Advanced Institute Science and Technology), Seoul, Korea
+Master of Financial Engineering, KAIST(Korea Advanced Institute of Science and Technology), Seoul, Korea
 
 (Major in Financial Analytics and Derivatives)
 
