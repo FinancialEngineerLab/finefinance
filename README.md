@@ -29,4 +29,4 @@ Published, "Market Neutral Strategy for ETF Trading with Deep Learning", DongBu 
 #Certificate :
 Investment Asset Manager(KOIFA)
 
-Bloomburg Market Concept(Bloomburg LP)
+Bloomberg Market Concept(Bloomberg LP)
