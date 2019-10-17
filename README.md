@@ -10,7 +10,7 @@ Master of Financial Engineering, KAIST(Korea Advanced Institute of Science and T
 
 (Major in Financial Analytics and Derivatives)
 
-Master of Finance, University of Illinois(Urbana-Champaign), IL, United States
+Visiting, University of Illinois(Urbana-Champaign), IL, United States
 
 #Works : 
 Derivatives Trading, SK Securities
