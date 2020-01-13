@@ -13,6 +13,9 @@ Master of Financial Engineering, KAIST(Korea Advanced Institute of Science and T
 Visiting, University of Illinois(Urbana-Champaign), IL, United States
 
 #Works : 
+
+Prop Derivatives Trader, Kyobo Securities
+
 Derivatives Trading, SK Securities
 
 MPA Manager, KOICA
