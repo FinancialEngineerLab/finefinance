@@ -1,0 +1,15 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: 중간 디렉터리(Debug\)에 다른 프로젝트(Class and Object.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+  date.cpp
+C:\Users\Check\Documents\Class and Object\date.cpp(6,29): warning C4838: 'unsigned int'에서 'int'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\Check\Documents\Class and Object\date.cpp(6,44): warning C4838: 'unsigned int'에서 'int'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\Check\Documents\Class and Object\date.cpp(6,59): warning C4838: 'unsigned int'에서 'int'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\Check\Documents\Class and Object\date.cpp(7,29): warning C4838: 'unsigned int'에서 'int'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\Check\Documents\Class and Object\date.cpp(7,44): warning C4838: 'unsigned int'에서 'int'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\Check\Documents\Class and Object\date.cpp(7,59): warning C4838: 'unsigned int'에서 'int'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\Check\Documents\Class and Object\date.cpp(11,17): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  main_class.cpp
+  normal.cpp
+  plainvanilla_option.cpp
+  코드를 생성하고 있습니다...
+MSVCRTD.lib(exe_winmain.obj) : error LNK2019: _WinMain@16"int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 함수에서 참조되는 확인할 수 없는 외부 기호
+C:\Users\Check\Documents\Class and Object\Debug\sdfadf.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.
