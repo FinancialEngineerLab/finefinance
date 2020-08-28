@@ -13,12 +13,13 @@ Master of Financial Engineering, KAIST(Korea Advanced Institute of Science and T
 Visiting, University of Illinois(Urbana-Champaign), IL, United States
 
 #Works : 
+Derivatives Quant, Hanwha Life Insurance
 
 Prop Derivatives Trader, Kyobo Securities
 
 Derivatives Trading, SK Securities
 
-Skills : R, Python, MySQL, Excel VBA, TradeStaion, Metatrader5, Eviews, C++
+Skills : R, Python, MySQL, Excel VBA, Eviews, C++, C#
 
 #Honor :
 2nd Rank, WorldQuant International Challenge 2019 (Korea Final)
