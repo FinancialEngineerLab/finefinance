@@ -19,7 +19,7 @@ Prop Derivatives Trader, Kyobo Securities
 
 Derivatives Trading, SK Securities
 
-Skills : R, Python, MySQL, Excel VBA, Eviews, C++, C#
+Skills : c++, c#, MySQL, SQL Server, MSSQL, Python, R, Excel VBA, Eviews
 
 #Honor :
 2nd Rank, WorldQuant International Challenge 2019 (Korea Final)
@@ -29,3 +29,4 @@ Published, "Market Neutral Strategy for ETF Trading with Deep Learning", DongBu 
 #Certificate :
 Investment Asset Manager(KOIFA)
 Bloomberg Market Concept(Bloomberg LP)
+SQL Developer
