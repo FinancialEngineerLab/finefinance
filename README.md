@@ -13,13 +13,13 @@ Master of Financial Engineering, KAIST(Korea Advanced Institute of Science and T
 Visiting, University of Illinois(Urbana-Champaign), IL, United States
 
 #Works : 
-Derivatives Quant, Hanwha Life Insurance
+OTC Rates Derivatives Quant, Hanwha Life Insurance
 
 Prop Derivatives Trader, Kyobo Securities
 
-Derivatives Trading, SK Securities
+OTC Derivatives Trading Internship, SK Securities
 
-Skills : c++, c#, MySQL, SQL Server, MSSQL, Python, R, Excel VBA, Eviews
+Skills : c++, c#, MySQL, SQL Server, MSSQL, HPC & Azure, Numerix, Python, R,ubuntu, Excel VBA, Eviews
 
 #Honor :
 2nd Rank, WorldQuant International Challenge 2019 (Korea Final)
@@ -27,6 +27,7 @@ Skills : c++, c#, MySQL, SQL Server, MSSQL, Python, R, Excel VBA, Eviews
 Published, "Market Neutral Strategy for ETF Trading with Deep Learning", DongBu Finance
 
 #Certificate :
+Financial Risk Manager(GARP)
 Investment Asset Manager(KOIFA)
 Bloomberg Market Concept(Bloomberg LP)
 SQL Developer
