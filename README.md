@@ -1,9 +1,9 @@
-# Author : BeAmericanCitizen
+# Author : FineFinance
 
 CV)
 #Works : 
 OTC Rates Derivatives Quant,
-Prop Derivatives Trader,
+Derivatives Trader,
 OTC Derivatives Trading Internship
 
 Skills : c++, c#, MySQL, SQL Server, MSSQL, HPC & Azure, Numerix, Python, R,ubuntu, Excel VBA, Eviews
